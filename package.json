@@ -1,0 +1,22 @@
+{
+  "name": "wikisearch",
+  "version": "1.0.0",
+  "description": "A tool that fetches a summary of a specified keyword",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wikipedia",
+    "search"
+  ],
+  "author": "recleun#1770",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^9.4.1",
+    "wikipedia": "^1.1.9"
+  },
+  "bin": {
+    "wikisearch": "./index.js"
+  }
+}
