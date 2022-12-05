@@ -18,5 +18,8 @@
   },
   "bin": {
     "wikisearch": "./index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.10"
   }
 }
