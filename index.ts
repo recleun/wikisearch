@@ -1,4 +1,6 @@
 #! /usr/bin/env node
+type wikiSummary = import("./node_modules/wikipedia/dist/resultTypes").wikiSummary;
+const opn: typeof open = require("open");
 const { program } = require("commander");
 const wiki = require("wikipedia");
 
@@ -9,6 +11,7 @@ program
 
 program
 	.option("-d, --debug", "Debug mode.")
+	.option("-b, --browser", "Open the summary in your browser.")
 	.requiredOption("-s, --searchword <text...>", "The search word.");
 
 program.parse();
@@ -16,7 +19,6 @@ program.parse();
 const options = program.opts();
 if (options.debug) console.log(options);
 let search = '';
-let i=0;
 for (let word of options.searchword) {
 	let added=false;
 	if (search=='') {
@@ -28,22 +30,33 @@ for (let word of options.searchword) {
 	}
 }
 
+async function getSummary(searchword) {
+    try {
+        const response: wikiSummary = await wiki.summary(searchword);
+        return response;
+    }
+    catch (error) {
+        console.error(error);
+    }
+}
+
 (async () => {
-	try {
-		const res = await wiki.summary(search);
-		const title = res.title;
-		if (title == "Not found.") {
-			console.log("\nNo results found.");
-			process.exit();
-		}
-		const description = res.description;
-		const summary = res.extract;
-		console.log("\nTitle: ", title);
-		console.log("------------");
-		console.log("Description: ", description ? description : "Not found.");
-		console.log("------------");
-		console.log("Summary: ", summary ? summary : "Not found.");
-	} catch (error) {
-		console.log(error);
-	}
+    const res = await getSummary(search);
+    const title = res.title;
+    if (!title || title == "Not found.") {
+        console.log("\nNo results found.");
+    }
+    else if (title != "Not found." && options.browser) {
+        setTimeout(process.exit, 10 * 1000);
+        await opn(res.content_urls.desktop.page);
+    }
+    else {
+        const description = res.description;
+        const summary = res.extract;
+        console.log("\nTitle: ", title);
+        console.log("------------");
+        console.log("Description: ", description ? description : "Not found.");
+        console.log("------------");
+        console.log("Summary: ", summary ? summary : "Not found.");
+    }
 })();
