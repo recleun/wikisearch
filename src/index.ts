@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-type wikiSummary = import("./node_modules/wikipedia/dist/resultTypes").wikiSummary;
+type wikiSummary = import("../node_modules/wikipedia/dist/resultTypes").wikiSummary;
 const opn: typeof open = require("open");
 const cp = require("copy-paste");
 const { program } = require("commander");
