@@ -1,3 +1,3 @@
-node-modules/* linguistic-vendored
-*.ts linguistic-language=TypeScript
+node_modules/* linguistic-vendored
+*.ts linguistic-language=ts
 index.js linguistic-generated=true
