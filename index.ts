@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 type wikiSummary = import("./node_modules/wikipedia/dist/resultTypes").wikiSummary;
 const opn: typeof open = require("open");
+const cp = require("copy-paste");
 const { program } = require("commander");
 const wiki = require("wikipedia");
 
@@ -12,6 +13,7 @@ program
 program
 	.option("-d, --debug", "Debug mode.")
 	.option("-b, --browser", "Open the summary in your browser.")
+    .option("-c, --copy", "Copy the summary if there is one.")
 	.requiredOption("-s, --searchword <text...>", "The search word.");
 
 program.parse();
@@ -43,6 +45,10 @@ async function getSummary(searchword) {
 (async () => {
     const res = await getSummary(search);
     const title = res.title;
+    const summary = res.extract;
+    if (options.copy) {
+        cp.copy(summary);
+    }
     if (!title || title == "Not found.") {
         console.log("\nNo results found.");
     }
@@ -52,7 +58,6 @@ async function getSummary(searchword) {
     }
     else {
         const description = res.description;
-        const summary = res.extract;
         console.log("\nTitle: ", title);
         console.log("------------");
         console.log("Description: ", description ? description : "Not found.");
