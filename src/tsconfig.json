@@ -1,5 +1,10 @@
 {
 	"compilerOptions": {
-		"target": "ES2017"
-	}
+		"target": "ES2017",
+		"outDir": "../wikisearch",
+		"baseUrl": ".",
+		"typeRoots": ["../wikisearch/node_modules/@types"],
+		"noEmitOnError": true
+	},
+	"files": ["index.ts"],
 }
