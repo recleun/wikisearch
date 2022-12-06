@@ -1,6 +1,6 @@
 {
   "name": "wikisearch",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "A tool that fetches a summary of a specified keyword",
   "main": "index.js",
   "scripts": {
