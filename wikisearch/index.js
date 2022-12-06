@@ -1,6 +1,7 @@
 #! /usr/bin/env node
 const opn = require("open");
 const cp = require("copy-paste");
+const colors = require("ansi-colors");
 const { program } = require("commander");
 const wiki = require("wikipedia");
 program
@@ -52,10 +53,10 @@ async function getSummary(searchword) {
     }
     else {
         const description = res.description;
-        console.log("\nTitle: ", title);
+        console.log(colors.green("\nTitle: "), title);
         console.log("------------");
-        console.log("Description: ", description ? description : "Not found.");
+        console.log(colors.green("Description: "), description ? description : "Not found.");
         console.log("------------");
-        console.log("Summary: ", summary ? summary : "Not found.");
+        console.log(colors.green("Summary: "), summary ? summary : "Not found.");
     }
 })();
