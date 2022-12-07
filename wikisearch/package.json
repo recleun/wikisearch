@@ -1,7 +1,7 @@
 {
   "name": "wikisearch",
-  "version": "1.0.6",
-  "description": "A tool that fetches a summary of a specified keyword",
+  "version": "1.1.0",
+  "description": "A helpful tool that fetches a summary from Wikipedia with some useful features.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
