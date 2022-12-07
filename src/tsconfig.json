@@ -6,5 +6,5 @@
 		"typeRoots": ["../wikisearch/node_modules/@types"],
 		"noEmitOnError": true
 	},
-	"files": ["index.ts"],
+	"files": ["wikisearch.ts"],
 }
