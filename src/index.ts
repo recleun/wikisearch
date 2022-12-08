@@ -1,5 +1,4 @@
-#! /usr/bin/env node
-type wikiSummary = import("../wikisearch/node_modules/wikipedia/dist/resultTypes").wikiSummary;
+const wikisearch = require("./wikisearch");
 const opn: typeof open = require("open");
 const cp = require("copy-paste");
 const colors = require("ansi-colors");
@@ -33,9 +32,10 @@ for (let word of options.searchword) {
 	}
 }
 
-async function getSummary(searchword) {
+async function makeRequest(searchword) {
+    const path = `/page/summary/${searchword.replace(/ /g,"_")}`
     try {
-        const response: wikiSummary = await wiki.summary(searchword);
+        const response = await wikisearch.getSummary(path);
         return response;
     }
     catch (error) {
@@ -44,7 +44,7 @@ async function getSummary(searchword) {
 }
 
 (async () => {
-    const res = await getSummary(search);
+    const res = await makeRequest(search);
     const title = res.title;
     const summary = res.extract;
     if (options.copy) {
