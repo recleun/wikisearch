@@ -1,14 +1,15 @@
 # Wikisearch
 
-Wikisearch is a tool that you can use to quickly search anything on Wikipedia, it is not published to `npm` so you will have to install it manually.
+Wikisearch is a tool that you can use to quickly search anything on Wikipedia. It got some useful features like quickly copying summaries using `-c` or even open it in the browser using `-b`.
 
 ## Installation
 
-##### You must have node.js installed, since this is coded in JavaScript.
+##### You must have node.js installed.
 
-To install it, download the code as .zip and then extract it in any folder you wish, then, open the terminal in that folder and run `npm install .` (That will install the package).
-\
-\
+```
+npm install -g wikisearch
+```
+
 After that, you should be able to run `wikisearch -h` to view the available commands and be able to run them.
 
 ## Community
