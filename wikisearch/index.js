@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+const wikisearch = require("./wikisearch");
 const opn = require("open");
 const cp = require("copy-paste");
 const colors = require("ansi-colors");
@@ -28,9 +28,10 @@ for (let word of options.searchword) {
         search += ' ' + word;
     }
 }
-async function getSummary(searchword) {
+async function makeRequest(searchword) {
+    const path = `/page/summary/${searchword.replace(/ /g, "_")}`;
     try {
-        const response = await wiki.summary(searchword);
+        const response = await wikisearch.getSummary(path);
         return response;
     }
     catch (error) {
@@ -38,7 +39,7 @@ async function getSummary(searchword) {
     }
 }
 (async () => {
-    const res = await getSummary(search);
+    const res = await makeRequest(search);
     const title = res.title;
     const summary = res.extract;
     if (options.copy) {
