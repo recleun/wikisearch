@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"target": "ES2017",
-		"outDir": "../wikisearch",
+		"outDir": "../dist",
 		"baseUrl": ".",
 		"typeRoots": ["../wikisearch/node_modules/@types"],
 		"noEmitOnError": true
