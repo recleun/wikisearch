@@ -3,7 +3,7 @@
 		"target": "ES2017",
 		"outDir": "../dist",
 		"baseUrl": ".",
-		"typeRoots": ["../wikisearch/node_modules/@types"],
+		"typeRoots": ["../dist/node_modules/@types"],
 		"noEmitOnError": true
 	},
 	"files": ["index.ts", "wikisearch.ts"],
