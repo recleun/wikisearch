@@ -1,14 +1,14 @@
 #! /usr/bin/env node
-const opn = require("open");
-const cp = require("copy-paste");
-const colors = require("ansi-colors");
-const { program } = require("commander");
-const wiki = require("wikipedia");
+import clipboard from 'clipboardy';
+import open from 'open';
+import chalk from 'chalk';
+import { program } from 'commander';
+import wiki from 'wikipedia';
 
 program
     .name("wikisearch")
     .description("A tool to quickly search something on wikipedia.")
-    .version("1.0.0", "-v, --version", "Shows the current version.");
+    .version("1.1.4", "-v, --version", "Shows the current version.");
 
 program
     .option("-d, --debug", "Debug mode.")
@@ -42,26 +42,24 @@ async function getSummary(searchword) {
     }
 }
 
-(async () => {
-    const res = await getSummary(search);
-    const title = res.title;
-    const summary = res.extract;
-    if (options.copy) {
-        cp.copy(summary);
-    }
-    if (!title || title == "Not found.") {
-        console.log("\nNo results found.");
-    }
-    else if (title != "Not found." && options.browser) {
-        setTimeout(process.exit, 10 * 1000);
-        await opn(res.content_urls.desktop.page);
-    }
-    else {
-        const description = res.description;
-        console.log(colors.green("\nTitle: "), title);
-        console.log("------------");
-        console.log(colors.green("Description: "), description ? description : "Not found.");
-        console.log("------------");
-        console.log(colors.green("Summary: "), summary ? summary : "Not found.");
-    }
-})();
+const res = await getSummary(search);
+const title = res.title;
+const summary = res.extract;
+if (options.copy) {
+    clipboard.writeSync(summary);
+}
+if (!title || title == "Not found.") {
+    console.log("\nNo results found.");
+}
+else if (title != "Not found." && options.browser) {
+    setTimeout(process.exit, 10 * 1000);
+    await open(res.content_urls.desktop.page);
+}
+else {
+    const description = res.description;
+    console.log(chalk.green("\nTitle: "), title);
+    console.log("------------");
+    console.log(chalk.green("Description: "), description ? description : "Not found.");
+    console.log("------------");
+    console.log(chalk.green("Summary: "), summary ? summary : "Not found.");
+}
