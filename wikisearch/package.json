@@ -26,9 +26,6 @@
     "wikipedia": "^1.1.9"
   },
   "bin": {
-    "wikisearch": "./wikisearch.js"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.10"
+    "wikisearch": "./index.js"
   }
 }
