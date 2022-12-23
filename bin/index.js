@@ -53,9 +53,9 @@ else if (title != "Not found." && options.browser) {
 }
 else {
     const description = res.description;
-    console.log(chalk.green("\nTitle: "), title);
+    console.log(chalk.italic.green("\nTitle: "), title);
     console.log("------------");
-    console.log(chalk.green("Description: "), description ? description : "Not found.");
+    console.log(chalk.italic.green("Description: "), description ? description : "Not found.");
     console.log("------------");
-    console.log(chalk.green("Summary: "), summary ? summary : "Not found.");
+    console.log(chalk.italic.green("Summary: "), summary ? summary : "Not found.");
 }
