@@ -66,6 +66,10 @@ if (options.related) {
         console.log("No results found.");
     } else if (title != "Not found." && options.browser) {
         await open(res.content_urls.desktop.page);
+    } else if (type == "disambiguation") {
+        console.log(chalk.italic.yellow("Result is ambiguous, try the following:\n"));
+        console.log(chalk.italic(`Open it in the browser by using:\n    wikisearch -s ${search} -b\n`));
+        console.log(chalk.italic(`Or see the related pages by using:\n    wikisearch -s ${search} -r`))
     } else {
         const description = res.description;
         console.log(chalk.italic.green("Title: "), title);
@@ -73,6 +77,5 @@ if (options.related) {
         console.log(chalk.italic.green("Description: "), description ? description : "Not found.");
         console.log("------------");
         console.log(chalk.italic.green("Summary: "), summary ? summary : "Not found.");
-        if (type == "disambiguation") console.log(chalk.italic.yellow(`\nNot what you looked for? Open it in the browser by using:\nOpen it in the browser by using: wikisearch -s ${search} -b`));
     }
 }
