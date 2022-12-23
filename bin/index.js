@@ -32,17 +32,13 @@ for (let word of options.searchword) {
     }
 }
 
-async function getSummary(searchword) {
-    try {
-        const response = await wiki.summary(searchword);
-        return response;
-    }
-    catch (error) {
-        console.error(error);
-    }
+let res;
+try {
+    res = await wiki.summary(search);
+} catch (error) {
+    console.error(error);
 }
 
-const res = await getSummary(search);
 const title = res.title;
 const summary = res.extract;
 if (options.copy) {
