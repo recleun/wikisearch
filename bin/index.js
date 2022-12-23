@@ -35,6 +35,7 @@ for (let word of options.searchword) {
 }
 
 if (options.related) {
+
     let res;
     try {
         res = await wiki.related(search);
@@ -42,10 +43,13 @@ if (options.related) {
     } catch (error) {
         console.error(error);
     }
+    
     for (let [key, page] of Object.entries(res.pages)) {
         console.log('- '+page.title.replace("_(disambiguation)", "").replaceAll("_", " "))
     }
+
 } else {
+
     let res;
     try {
         res = await wiki.summary(search);
@@ -53,7 +57,6 @@ if (options.related) {
     } catch (error) {
         console.error(error);
     }
-
 
     const type = res.type;
     const title = res.title;
@@ -63,7 +66,7 @@ if (options.related) {
     }
 
     if (!title || title == "Not found.") {
-        console.log("No results found.");
+        console.log(chalk.yellow("No results found."));
     } else if (title != "Not found." && options.browser) {
         await open(res.content_urls.desktop.page);
     } else if (type == "disambiguation") {
