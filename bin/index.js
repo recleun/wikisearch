@@ -44,14 +44,12 @@ const summary = res.extract;
 if (options.copy) {
     clipboard.writeSync(summary);
 }
+
 if (!title || title == "Not found.") {
     console.log("\nNo results found.");
-}
-else if (title != "Not found." && options.browser) {
-    setTimeout(process.exit, 10 * 1000);
+} else if (title != "Not found." && options.browser) {
     await open(res.content_urls.desktop.page);
-}
-else {
+} else {
     const description = res.description;
     console.log(chalk.italic.green("\nTitle: "), title);
     console.log("------------");
