@@ -1,16 +1,15 @@
 {
   "name": "wikisearch",
-  "version": "1.1.5",
+  "version": "1.2.0",
   "type": "module",
-  "description": "A helpful tool that fetches a summary from Wikipedia with some useful features.",
-  "main": "index.js",
+  "description": "A helpful tool that fetches data from Wikipedia with some useful features.",
   "homepage": "https://github.com/recleun/wikisearch#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/recleun/wikisearch.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "wikisearch -s javascript -d2 && wikisearch -s javascript -d2 -r && wikisearch -s javascript -b -d2"
   },
   "keywords": [
     "wikipedia",
