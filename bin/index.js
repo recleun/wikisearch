@@ -43,6 +43,7 @@ if (options.related) {
 } else {
 
     const summary = await wikisearch.getSummary(search);
+    if (options.debug == "2") { console.log(summary); console.log("") };
 
     if (options.copy) {
         wikisearch.copySummary(summary.extract);
