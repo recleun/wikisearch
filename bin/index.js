@@ -7,7 +7,7 @@ import { program } from 'commander';
 program
     .name("wikisearch")
     .description("A tool to quickly search something on wikipedia.")
-    .version("1.2.0", "-v, --version", "Shows the current version.");
+    .version("1.3.0", "-v, --version", "Shows the current version.");
 
 program
     .option("-d, --debug <level>", "Debug mode.", "0")
